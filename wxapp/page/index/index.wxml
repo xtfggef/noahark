@@ -1,0 +1,18 @@
+<view class="c-minheight wx-view_section">
+    <swiper class="wx-swiper_XOtA2c" indicator-dots="True" lower-threshold="50">
+        <swiper-item class="c-full wx-swiper-item"/>
+    </swiper>
+</view>
+<view wx:for="{{modules}}" wx:for-item="m" class="c-minheight wx-view_section">
+    <view class="c-minheight wx-view_setion_header">
+        <text class="c-block wx-text_setion_title">{{m.name}}</text>
+    </view>
+    <scroll-view class="c-minheight" lower-threshold="50" scroll-x="True">
+        <view class="wx-view_c3VPoR">
+            <navigator wx:for="{{m.category}}" wx:for-item="c" class="wx-navigator_movieitem" url="{{c.url}}">
+                <image class="wx-image_movieitem_cover" mode="scaleToFill" src="{{c.image}}"/>
+                <text class="c-block wx-image_movieitem_title">{{c.name}}</text>
+            </navigator>
+        </view>
+    </scroll-view>
+</view>
