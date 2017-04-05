@@ -1,38 +1,32 @@
 <view class="c-minheight wx-view_RUFx1n" data-c_e_id="wx_view_24f5838b">
     <view class="wx-view_IfJZkK" data-c_e_id="wx_view_6df67227">
         <view class="wx-view_u7aIQl" data-c_e_id="wx_viewe6eb0604">
-            <image class="wx-image_SC1alK" data-c_e_id="wx_imageb4843f3b" mode="aspectFill" src="http://qty83k.creatby.com/materials/origin/55094fcca96f38445d849602add837a7_origin.jpg" style="background-size: cover; background-position: center center; background-repeat: no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/55094fcca96f38445d849602add837a7_origin.jpg); "/>
-            <view class="wx-view_3ggkNG" data-c_e_id="wx_view176871e8">
-                <text class="c-block wx-text_yvWBsn" data-c_e_id="wx_text3e7862f8">Alice</text>
+            <image class="wx-image_SC1alK" data-c_e_id="wx_imageb4843f3b" mode="aspectFill" src="../../images/test/avatar.jpg" style="background-size: cover; background-position: center center; background-repeat: no-repeat; background-image: url(../../images/test/avatar.jpg); "/>
+            <view class="wx-view_3ggkNG"><text class="c-block wx-text_yvWBsn" >Alice</text>
                 <text class="c-block wx-text_yvWBsn2" data-c_e_id="wx_texte70834a0">From Shanghai</text>
             </view>
         </view>
         <navigator class="wx-navigator_2zAN7l" data-c_e_id="wx_navigator_6e8b412a" hover-class="navigator-hover">
-            <image class="wx-image_Sutyvo" data-c_e_id="wx_image_6865d9db" mode="scaleToFill" src="http://qty83k.creatby.com/materials/origin/b0c869bf40e80d32420f020092a281dd_origin.png" style="background-size: 100% 100%; background-position: 0% 0%; background-repeat: no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/b0c869bf40e80d32420f020092a281dd_origin.png); "/>
+            <image class="wx-image_Sutyvo" data-c_e_id="wx_image_6865d9db" mode="scaleToFill" src="../../images/icons/messageIcon.png" style="background-size: 100% 100%; background-position: 0% 0%; background-repeat: no-repeat; background-image: url(../../images/icons/messageIcon.png); "/>
             <text class="c-block wx-text_BYrm5g" data-c_e_id="wx_text_5f8068a5">2</text>
         </navigator>
     </view>
     <navigator class="wx-navigator_iOsAsd" data-c_e_id="wx_navigator_d2f72ebb" hover-class="navigator-hover">
-        <image class="wx-image_SfQyMy" data-c_e_id="wx_image_6a85bf20" mode="aspectFit" src="http://qty83k.creatby.com/materials/origin/896e8773cba4e4bcc63abeb4970c118d_origin.png" style="background-size: contain; background-position: center center; background-repeat: no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/896e8773cba4e4bcc63abeb4970c118d_origin.png); "/>
+        <image class="addIcon" mode="aspectFill" src="../../images/icons/add.png" bindtap="touchAdd"></image>
     </navigator>
-    <scroll-view class="wx-scroll-view_PmrL5K" data-c_e_id="wx_scroll_view_9b280f63" lower-threshold="50" scroll-y="True" style="overflow-x: hidden; overflow-y: auto;" upper-threshold="50">
-        <view class="wx-view_WjSmLp" data-c_e_id="wx_view_e8b374e5">
-            <navigator class="wx-navigator_csHYE8" data-c_e_id="wx_navigator_64ea2e3b" hover-class="navigator-hover" url="../write/write">
-                <image class="wx-image_jfWp5t" data-c_e_id="wx_image_f46aacb9" mode="aspectFill" src="http://qty83k.creatby.com/materials/origin/683d57b0f8afa8ff62459aa6eaccf368_origin.png" style="background-size:  cover; background-position:  center center; background-repeat:  no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/683d57b0f8afa8ff62459aa6eaccf368_origin.png); "/>
-                <view class="wx-view_9TxaXG" data-c_e_id="wx_view_fe6baadf">
-                    <view class="wx-view_vnhcDJ" data-c_e_id="wx_view_e7198a58">
-                        <text class="c-block wx-text_6X8CEW" data-c_e_id="wx_text3f4d125b">写文章</text>
-                    </view>
-                </view>
-            </navigator>
-            <navigator class="wx-navigator_csHYE8" data-c_e_id="wx_navigator3ef6179e" hover-class="navigator-hover">
-                <image class="wx-image_jfWp5t" data-c_e_id="wx_imagedcfbcd20" mode="aspectFill" src="http://qty83k.creatby.com/materials/origin/b44083cb8f24ec23043b25cb17681f8c_origin.png" style="background-size:  cover; background-position:  center center; background-repeat:  no-repeat; background-image: url(http://qty83k.creatby.com/materials/origin/b44083cb8f24ec23043b25cb17681f8c_origin.png); "/>
-                <view class="wx-view_9TxaXG" data-c_e_id="wx_view39eac899">
-                    <view class="wx-view_vnhcDJ" data-c_e_id="wx_viewafe5d4b3">
-                        <text class="c-block wx-text_6X8CEW" data-c_e_id="wx_textd2621599">我的收藏</text>
-                    </view>
-                </view>
-            </navigator>
-        </view>
-    </scroll-view>
 </view>
+<!--一个全屏模态对话框-->
+  <view class="modal" style="{{modalShowStyle}}">
+    <view class="dialog">
+      <view class="modal-item" style="display:flex;justify-content:center;align-items:center;">
+      请输入日记标题
+      </view>
+      <view class="modal-item" style="margin:0 auto;width:90%;">
+        <input type="text" bindinput="titleInput" style="background-color:white;border-radius:2px;" value="{{diaryTitle}}" placeholder="请输入日记标题"></input>
+      </view>
+      <view class="modal-button" style="width:100%">
+        <view style="color:green;border-right:1px solid #E5E7ED;" bindtap="touchAddNew">确定</view>
+        <view bindtap="touchCancel">取消</view>
+      </view>
+    </view>
+  </view>

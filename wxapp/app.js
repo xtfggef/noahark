@@ -4,6 +4,27 @@ var coolsite360 = require('./coolsite/index.js');
 App({
   coolsite360: coolsite360,
   
+  // 获取用户信息
+  getUserInfo: function(cb) {
+    var that = this;
+
+    if (this.globalData.userInfo) {
+      typeof cb == 'function' && cb(this.globalData.userInfo)
+    } else {
+      // 先登录
+      wx.login({
+        success: function() {
+          wx.getUserInfo({
+            success: (res) => {
+              that.globalData.userInfo = res.userInfo;
+              typeof cb == 'function' && cb(that.globalData.userInfo)
+            }
+          })
+        }
+      })
+    }
+  },
+
   // 获取本地全部日记列表
   getDiaryList(cb) {
     var that = this;

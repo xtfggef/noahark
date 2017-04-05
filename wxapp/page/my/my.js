@@ -17,9 +17,41 @@ Page({
 
   data: {
     
-  
+   // 模态对话框样式 
+   modalShowStyle: ""
   
   },
+
+  // 隐藏模态框
+    hideModal() {
+        this.setData({modalShowStyle: ""});
+    },
+    // 点击新建日记按钮
+    touchAdd: function (event) {
+        this.setData({
+            modalShowStyle: "opacity:1;pointer-events:auto;"
+        })
+    },
+    // 取消标题输入
+    touchCancel: function(event) {
+        this.hideModal();
+        this.clearTitle();
+    }, 
+
+    // 标题输入事件
+    titleInput: function(event) {
+        this.setData({
+            diaryTitle: event.detail.value,
+        })
+    },
+    // 新建日记
+    touchAddNew: function(event) {
+        this.hideModal();
+
+        wx.navigateTo({
+            url: "../write/write?title=" + this.data.diaryTitle,
+        });
+    },
 
   /**
    * 生命周期函数--监听页面加载
@@ -42,7 +74,14 @@ Page({
   onShow () {
     // 执行coolsite360交互组件展示
     app.coolsite360.onShow(this);
+    this.hideModal();
+    this.clearTitle();
   },
+
+  // 清除日记标题
+    clearTitle() {
+        this.setData({diaryTitle: ""});
+    },
 
   /**
    * 生命周期函数--监听页面隐藏

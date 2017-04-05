@@ -93,7 +93,6 @@ Page({
 
   // 数据初始化
   init() {
-    this.getPoi();
     this.setMeta();
   },
 
@@ -320,27 +319,6 @@ Page({
     })
   },
 
-  // 获得当前位置信息
-  getPoi() {
-    var that = this;
-    wx.getLocation({
-      type: 'gcj02',
-      success: function(res) {
-        geo.mapRequest(
-          'geocoder',
-          {'location': geo.formatLocation(res)},
-          loc => {
-            let poi = {
-              'latitude': res.latitude,
-              'longitude': res.longitude,
-              'name': loc.result.address,
-            };
-            that.setData({poi: poi});
-          })
-      }
-    })
-  },
-
   // 构造日记内容对象
   makeContent(type, content, description) {
     return {
@@ -363,3 +341,27 @@ Page({
   },
 
 })
+
+
+
+//////////////// 一些可能会用到的功能函数 ////////////
+// 获得当前位置信息
+  // getPoi() {
+  //   var that = this;
+  //   wx.getLocation({
+  //     type: 'gcj02',
+  //     success: function(res) {
+  //       geo.mapRequest(
+  //         'geocoder',
+  //         {'location': geo.formatLocation(res)},
+  //         loc => {
+  //           let poi = {
+  //             'latitude': res.latitude,
+  //             'longitude': res.longitude,
+  //             'name': loc.result.address,
+  //           };
+  //           that.setData({poi: poi});
+  //         })
+  //     }
+  //   })
+  // },
