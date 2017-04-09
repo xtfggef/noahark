@@ -6,8 +6,8 @@ import com.prettylife.constant.PageConstant;
 import com.prettylife.constant.ResourceNameConstant;
 import com.prettylife.exception.ResourceNotFoundException;
 import com.prettylife.model.dto.PaginatedResult;
-import com.prettylife.model.entity.Book;
-import com.prettylife.service.BookService;
+import com.prettylife.model.entity.Article;
+import com.prettylife.service.ArticleService;
 import com.prettylife.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,18 +27,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  * @author 二青
  */
 @RestController
-@RequestMapping("/books")
-public class BookController {
+@RequestMapping("/articles")
+public class ArticleController {
 
-    private BookService bookService;
+    private ArticleService articleService;
 
     @Autowired
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
     }
 
     @GetMapping
-    public ResponseEntity<?> getBooks(@RequestParam(value = "page", required = false) String pageString,
+    public ResponseEntity<?> getArticles(@RequestParam(value = "page", required = false) String pageString,
                                       @RequestParam(value = "per_page", required = false) String perPageString) {
         // Parse request parameters
         int page = PageUtil.parsePage(pageString, PageConstant.PAGE);
@@ -46,53 +46,53 @@ public class BookController {
 
         return ResponseEntity
                 .ok(new PaginatedResult()
-                        .setData(bookService.getBooksByPage(page, perPage))
+                        .setData(articleService.getArticlesByPage(page, perPage))
                         .setCurrentPage(page)
-                        .setTotalPage(bookService.getTotalPage(perPage)));
+                        .setTotalPage(articleService.getTotalPage(perPage)));
     }
 
-    @GetMapping("/{bookId}")
-    public ResponseEntity<?> getBookById(@PathVariable Long bookId) {
-        return bookService
-                .getBookById(bookId)
+    @GetMapping("/{articleId}")
+    public ResponseEntity<?> getArticleById(@PathVariable Long articleId) {
+        return articleService
+                .getArticleById(articleId)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResourceNotFoundException()
-                        .setResourceName(ResourceNameConstant.BOOK)
-                        .setId(bookId));
+                        .setResourceName(ResourceNameConstant.ARTICLE)
+                        .setId(articleId));
     }
 
     @PostMapping
-    public ResponseEntity<?> postBook(@RequestBody Book book) {
-        bookService.saveBook(book);
+    public ResponseEntity<?> postArticle(@RequestBody Article article) {
+        articleService.saveArticle(article);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(book.getId())
+                .buildAndExpand(article.getId())
                 .toUri();
 
         return ResponseEntity
                 .created(location)
-                .body(book);
+                .body(article);
 
     }
 
-    @PutMapping("/{bookId}")
-    public ResponseEntity<?> putBook(@PathVariable Long bookId, @RequestBody Book book) {
-        assertBookExist(bookId);
+    @PutMapping("/{ArticleId}")
+    public ResponseEntity<?> putArticle(@PathVariable Long articleId, @RequestBody Article article) {
+        assertArticleExist(articleId);
 
-        bookService.modifyBookOnNameById(book.setId(bookId));
+        articleService.modifyArticleOnNameById(article.setId(articleId));
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(book);
+                .body(article);
     }
 
-    @DeleteMapping("/{bookId}")
-    public ResponseEntity<?> deleteBook(@PathVariable Long bookId) {
-        assertBookExist(bookId);
+    @DeleteMapping("/{ArticleId}")
+    public ResponseEntity<?> deleteArticle(@PathVariable Long articleId) {
+        assertArticleExist(articleId);
 
-        bookService.deleteBookById(bookId);
+        articleService.deleteArticleById(articleId);
 
         return ResponseEntity
                 .noContent()
@@ -100,12 +100,12 @@ public class BookController {
     }
 
     /********************************** HELPER METHOD **********************************/
-    private void assertBookExist(Long bookId) {
-        bookService
-                .getBookById(bookId)
+    private void assertArticleExist(Long articleId) {
+        articleService
+                .getArticleById(articleId)
                 .orElseThrow(() -> new ResourceNotFoundException()
-                        .setResourceName(ResourceNameConstant.BOOK)
-                        .setId(bookId));
+                        .setResourceName(ResourceNameConstant.ARTICLE)
+                        .setId(articleId));
     }
 
 }

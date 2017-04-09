@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prettylife.repository.mybatis.ArticleMapper">
+    <resultMap id="article" type="Article">
+        <id property="id" column="id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="labels" column="labels"/>
+        <result property="author" column="author"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <insert id="insertArticle" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+          article (id, category_id, title, content, labels, category_name, author, gmt_create, gmt_modified, status)
+        VALUES
+          (#{id}, #{categoryId}, #{title}, #{content}, #{labels}, #{categoryName}, #{author}, #{gmtCreate}, #{gmtModified}, #{status})
+    </insert>
+
+    <update id="updateArticleOnNameById">
+        UPDATE
+          article
+        SET
+          name = #{name}
+        WHERE
+          id = #{id}
+    </update>
+
+    <delete id="deleteArticleById">
+        DELETE FROM
+          article
+        WHERE
+          id = #{id}
+    </delete>
+
+    <select id="selectArticleById" resultMap="article">
+        SELECT
+          *
+        FROM
+          article
+        WHERE
+          id = #{id}
+    </select>
+
+    <select id="selectArticlesByAuthor" resultMap="article">
+        SELECT
+          *
+        FROM
+          Article
+        WHERE
+          author = #{author}
+    </select>
+
+    <select id="selectArticlesByLowPriceAndHighPrice" resultMap="article">
+        SELECT
+          *
+        FROM
+          article
+        WHERE
+          price BETWEEN #{lowPrice} AND #{highPrice}
+    </select>
+
+    <select id="selectAllArticles" resultMap="article">
+        SELECT
+          *
+        FROM
+          article
+    </select>
+
+    <select id="selectArticlesByPage" resultMap="article">
+        SELECT
+          *
+        FROM
+          article
+        LIMIT #{offset}, #{perPage}
+    </select>
+
+    <select id="selectCount" resultType="integer">
+        SELECT
+          COUNT(*)
+        FROM
+          article
+    </select>
+
+</mapper>

@@ -5,7 +5,7 @@ package com.prettylife.constant;
  */
 public class ResourceNameConstant {
 
-    public static final String BOOK = "book";
+    public static final String ARTICLE = "article";
 
     /**
      * Prevent instantiation

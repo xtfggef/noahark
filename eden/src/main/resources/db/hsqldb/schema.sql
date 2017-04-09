@@ -1,25 +1,28 @@
-DROP TABLE book IF EXISTS;
-DROP TABLE book_store IF EXISTS;
 DROP TABLE user IF EXISTS;
 
-CREATE TABLE book (
-  id            BIGINT IDENTITY PRIMARY KEY,
-  book_store_id BIGINT,
-  name          VARCHAR(80),
-  author        VARCHAR(80),
-  price         DECIMAL(10,2),
-  topic         VARCHAR(80),
-  publish_date  DATE
+CREATE TABLE `prettylife`.`user` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `nick` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `avatar` VARCHAR(100) NULL,
+  `phone` VARCHAR(45) NULL,
+  `openid` VARCHAR(45) NULL,
+  `gender` VARCHAR(10) NULL,
+  `address` VARCHAR(100) NULL,
+  `labels` VARCHAR(200) NULL,
+  `status` INT NOT NULL,
+  `gmt_created` DATETIME NOT NULL,
+  `gmt_modified` DATETIME NOT NULL,
+  PRIMARY KEY (`id`));
 );
 
-CREATE TABLE book_store (
-  id           BIGINT IDENTITY PRIMARY KEY,
-  name         VARCHAR(80),
-  address      VARCHAR(80)
-);
+CREATE TABLE `prettylife`.`module` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `url` VARCHAR(45) NULL,
+  `image` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  `gmt_created` DATETIME NULL,
+  `gmt_modified` DATETIME NULL,
+  PRIMARY KEY (`id`));
 
-CREATE TABLE user (
-  id            BIGINT IDENTITY PRIMARY KEY,
-  username      VARCHAR(80),
-  password      VARCHAR(80)
-);
